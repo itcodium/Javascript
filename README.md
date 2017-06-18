@@ -12,7 +12,7 @@ Para ejecutar los archivos javascripts se utiliza phantomjs Link: http://phantom
 	En cada carpeta hay un archivo **test.bat** que se encarga de ejecutar los ejemplo.
 	
 
-	**Contenido del archivo**
+	- Contenido de cada archivo **test.bat**
 
 	cls
 	"..\..\phantomjs\phantomjs.exe" "..\..\phantomjs\RunTest.js" "ObjectCreation.js"
