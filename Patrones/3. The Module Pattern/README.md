@@ -1,10 +1,11 @@
-**Object Literals**
+## Basic Constructors
 
-In object literal notation, an object is described as a set of comma-separated name/value pairs enclosed in curly braces ({}). Names inside the object may be either strings or identifiers that are followed by a colon. There should be no comma used after the final name/value pair in the object as this may result in errors.
+**JavaScript doesn't support the concept of classes but it does support special constructor functions that work with objects**. By simply prefixing a call to a constructor function with the keyword "new", we can tell JavaScript we would like the function to behave like a constructor and instantiate a new object with the members defined by that function.
+
+Inside a constructor, the keyword this references the new object that's being created. 
 
 
-**The Module Pattern**
 
-The Module pattern was originally defined as a way to provide both private and public encapsulation for classes in conventional software engineering.
+## Constructors With Prototypes
 
-In JavaScript, the Module pattern is used to further emulate the concept of classes in such a way that we're able to include both public/private methods and variables inside a single object, thus shielding particular parts from the global scope. What this results in is a reduction in the likelihood of our function names conflicting with other functions defined in additional scripts on the page.
+Functions, like almost all objects in JavaScript, contain a "prototype" object. When we call a JavaScript constructor to create an object, all the properties of the constructor's prototype are then made available to the new object.
