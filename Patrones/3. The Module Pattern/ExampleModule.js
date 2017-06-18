@@ -1,8 +1,3 @@
-/*
-	
-	Using object literals can assist in encapsulating and organizing your code and Rebecca Murphey has 
-
-*/
 var myModule = {
   myProperty: "someValue",
   myConfig: {

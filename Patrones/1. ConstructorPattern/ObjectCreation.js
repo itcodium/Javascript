@@ -31,5 +31,3 @@ Object.defineProperty( newObject3, "someKey", {
 console.log(JSON.stringify(newObject1));
 console.log(JSON.stringify(newObject2));
 console.log(JSON.stringify(newObject3));
-
-

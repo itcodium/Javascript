@@ -42,4 +42,3 @@ Object.defineProperties( newObject, {
 });
  
 console.log("newObject-> ",JSON.stringify(newObject));
- 

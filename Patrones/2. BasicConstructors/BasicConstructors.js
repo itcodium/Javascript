@@ -1,8 +1,3 @@
-/*
-	JavaScript doesn't support the concept of classes but 
-	it does support special constructor functions that work with objects.
-*/
-
 function Car( model, year, miles ) {
  
   this.model = model;

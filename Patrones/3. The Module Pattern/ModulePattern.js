@@ -1,17 +1,24 @@
-/*
-In object literal notation, an object is described as:
+var testModule = (function () {
+ 
+  var counter = 0; // esta variable es privada
+ 
+  return {
 
-A set of comma-separated name/value pairs enclosed in curly braces ({}). Names inside the object may be either strings or identifiers that are followed by a colon. There should be no comma used after the final name/value pair in the object as this may result in errors.
-*/
-var myObjectLiteral = {
-
-    variableKey: "Hello World",
-
-    functionKey: function () {
-      return this.variableKey;
+    incrementCounter: function () {
+      return counter++;
+    },
+ 
+    resetCounter: function () {
+      console.log( "counter value prior to reset: " + counter );
+      counter = 0;
     }
-};
+  };
+ 
+})();
+ 
 
-console.log(myObjectLiteral.functionKey())
 
+testModule.incrementCounter();
+testModule.incrementCounter();
+testModule.resetCounter();
 

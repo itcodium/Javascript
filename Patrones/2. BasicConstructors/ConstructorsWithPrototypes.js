@@ -1,8 +1,3 @@
-/*
-    Functions, like almost all objects in JavaScript, contain a "prototype" object. 
-    When we call a JavaScript constructor to create an object, all the properties of the constructor's prototype 
-    are then made available to the new object.
-*/
 
  function Car( model, year, miles ) {
  
