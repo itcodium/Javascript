@@ -1,22 +1,22 @@
 
 cls
-echo "..\..\phantomjs\phantomjs.exe" "..\..\phantomjs\RunTest.js" "ObjectLiterals.js"
-echo @pause
+"..\..\phantomjs\phantomjs.exe" "..\..\phantomjs\RunTest.js" "ObjectLiterals.js"
+@pause
 cls
-echo "..\..\phantomjs\phantomjs.exe" "..\..\phantomjs\RunTest.js" "ExampleModule.js"
-echo @pause
+"..\..\phantomjs\phantomjs.exe" "..\..\phantomjs\RunTest.js" "ExampleModule.js"
+@pause
 cls
-echo "..\..\phantomjs\phantomjs.exe" "..\..\phantomjs\RunTest.js" "ModulePattern.js"
-echo @pause
+"..\..\phantomjs\phantomjs.exe" "..\..\phantomjs\RunTest.js" "ModulePattern.js"
+@pause
 cls
-echo "..\..\phantomjs\phantomjs.exe" "..\..\phantomjs\RunTest.js" "BasketModule.js"
-echo @pause
+"..\..\phantomjs\phantomjs.exe" "..\..\phantomjs\RunTest.js" "BasketModule.js"
+@pause
 cls
-echo "..\..\phantomjs\phantomjs.exe" "..\..\phantomjs\RunTest.js" "ModuleParameters.js"
-echo @pause
+"..\..\phantomjs\phantomjs.exe" "..\..\phantomjs\RunTest.js" "ModuleParameters.js"
+@pause
 cls
-echo "..\..\phantomjs\phantomjs.exe" "..\..\phantomjs\RunTest.js" "ModuleParameters_WithoutConsuming.js"
-echo @pause
+"..\..\phantomjs\phantomjs.exe" "..\..\phantomjs\RunTest.js" "ModuleParameters_WithoutConsuming.js"
+@pause
 cls
 "..\..\phantomjs\phantomjs.exe" "..\..\phantomjs\RunTest.js" "RevealingModulePattern.js"
 @pause
