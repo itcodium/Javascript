@@ -29,7 +29,13 @@ console.log(content);
 console.log("")
 console.log("-------------------  Resultado  -----------------------");
 console.log("")
-eval(content)
+try {
+    eval(content)
+}
+catch(err) {
+    console.log("Error al ejecutar el codigo: ",err.message);
+}
+
 console.log("")
 console.log("-------------------       Fin     -----------------------");
 phantom.exit();
@@ -44,14 +50,3 @@ phantom.exit();
 
 //
 */
-
-
-
-
-
-
-
-
-
-
-
