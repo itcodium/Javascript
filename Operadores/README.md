@@ -37,7 +37,49 @@ El operador coma (,) simplemente evalúa ambos operandos y retorna el valor del 
 	  console.log("a[" + i + "][" + j + "]= " + a[i][j]);
   
 
-https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Expressions_and_Operators
+
+
+#Operadores unarios
+
+Una operación unaria es una operación que sólo necesita un operando.
+
+##delete
+
+La función del operador delete es eliminar un objeto, una propiedad de un objeto, o un elemento en el indice específico de un Array.
+
+	delete nombreObjeto;
+	delete nombreObjeto.propiedad;
+	delete nombreObjeto[indice];
+
+##void
+
+El operador void especifica una expresión que será evaluada y no retornará ningún resultado. En los ejemplos anteriores, expresion hace referencia a la expresión que será evaluada. Si bien los paréntesis que envuelven a la expresión son opcionales, en cuanto a estilo del código, es una buena práctica usarlos.
+
+
+##in
+
+El operador in devuelve true si la propiedad especificada como primer operando se encuentra en el objeto especificado como segundo operando. La sintaxis es:
+
+	nombrePropiedadoNumero in nombreObjeto
+
+
+##new
+
+Utilice el operador new para crear una instancia de un tipo propio o de uno de los tipos de objetos predefinidos: Array, Boolean, Date, Function, Image, Number, Object, Option, RegExp o String. La semántica es la siguiente:
+
+##super
+
+La palabra clave super es usada para llamar funciones en el objeto padre. Es útil con clases para llamar al constructor padre.
+
+
+##Operador de propagación
+
+El operador de propagación permite que una expresión sea expandida en situaciones donde se esperan múltiples argumentos (para llamadas a funciones) o múltiples elementos (para Arrays literales).
+
+
+
+
+
 
 #Pendiente de ver...
-https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Expressions_and_Operators#Operadores_unarios
+https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Expressions_and_Operators#Operadores_relacionales
