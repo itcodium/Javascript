@@ -20,3 +20,7 @@ cls
 cls
 "..\..\phantomjs\phantomjs.exe" "..\..\phantomjs\RunTest.js" "RevealingModulePattern.js"
 @pause
+cls
+"..\..\phantomjs\phantomjs.exe" "..\..\phantomjs\RunTest.js" "SingletonPattern.js"
+@pause
+

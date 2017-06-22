@@ -38,3 +38,7 @@ A disadvantage of this pattern is that if a private function refers to a public 
 Public object members which refer to private variables are also subject to the no-patch rule notes above.
 
 As a result of this, modules created with the Revealing Module pattern may be more fragile than those created with the original Module pattern, so care should be taken during usage.
+
+# The Singleton Pattern
+
+The Singleton pattern is thus known because it restricts instantiation of a class to a single object. Classically, the Singleton pattern can be implemented by creating a class with a method that creates a new instance of the class if one doesn't exist. In the event of an instance already existing, it simply returns a reference to that object.
