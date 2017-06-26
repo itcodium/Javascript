@@ -13,19 +13,17 @@
         <link href="assets/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     </head>
     <body ng-controller="appController">
-            <div class="page-inner">
-                   <div class="container"><a href="#index" class="btn btn-default" ng-click='refreshLink("Home")'>Home</a> 
-                        <a href="#user" class="btn btn-default" ng-click='refreshLink("Usuario")'>User</a> 
-                        <a href="#user/edit" class="btn btn-default" ng-click='refreshLink("Editar usuario")'>User Edit</a> 
-                    </div>	
+        <div class="page-inner">
+            <div class="container">
+                <a href="#index" class="btn btn-default" ng-click='refreshLink("Home")'>Home</a> 
+                <a href="#user" class="btn btn-default" ng-click='refreshLink("Usuario")'>User</a> 
+                <a href="#user/edit" class="btn btn-default" ng-click='refreshLink("Editar usuario")'>User Edit</a> 
+            </div>	
+            <page-title value="titulo" ng-show='titulo'></page-title>
+            <div id="main-wrapper" class="container" ng-view style="background-color:#ffffcc;padding:5px;"></div>
+            <page-footer value="footer"></page-footer>
 
-                <page-title value="titulo" ng-show='titulo'></page-title>
-                <div id="main-wrapper" class="container" ng-view style="background-color:#ffffcc;padding:5px;">
-				</div>
-                <page-footer value="footer"></page-footer>
-            </div><!-- Page Inner -->
-        
-		
+        </div><!-- Page Inner -->
 
         <!-- Javascripts -->
 
