@@ -3,6 +3,10 @@ var pageUserText = {
     first_name: "First Name",
     last_name: "Last Name",
     avatar: "Avatar",
+    email: "Email",
+    first_name_required: "Tell us your name.",
+    last_name_required: "Tell us your last name."
+    
 };
 
 app.controller('userController', function ($scope, $http,$location, $httpParamSerializerJQLike, AppServiceCaller, AppControlText, MathService) {
@@ -17,13 +21,15 @@ app.controller('userController', function ($scope, $http,$location, $httpParamSe
     $scope.user.avatar = "http://image.jpg";
 
     $scope.submit = function () {
-        AppServiceCaller.post(APP_USER, $httpParamSerializerJQLike($scope.usuario), true).then(function (resp) {
-            if (resp.status == 'OK' || resp.status == '201' || resp.status == '200') {
-                $location.path('/user/edit');
-            } 
-            console.log("data -> ", resp)
-
-        });
+        if ($scope.frmUser.$valid) {
+            $scope.visible = false;
+            AppServiceCaller.post(APP_USER, $httpParamSerializerJQLike($scope.usuario), true).then(function (resp) {
+                if (resp.status == 'OK' || resp.status == '201' || resp.status == '200') {
+                    $location.path('/user/edit');
+                } 
+                console.log("data -> ", resp)
+            });
+        }
     }
 })
 
