@@ -20,7 +20,10 @@ app.config(function ($routeProvider) {
              templateUrl: 'assets/pages/user/edit.html',
             controller: 'edituserController'
         })
-       
+       .when('/user/list', {
+           templateUrl: 'assets/pages/user/list.html',
+           controller: 'listUserController'
+       })
         .otherwise({
             redirectTo: '/'
         });

@@ -96,3 +96,43 @@ app.controller('edituserController', function ($scope, $filter, $http, AppServic
 
 });
 
+
+
+
+// app.controller('listUserController', ["$scope", "AppServiceCaller", Users])
+
+app.controller('listUserController', ["$scope", "AppServiceCaller", Users])
+
+var UserCallBacks = function ($scope, AppServiceCaller) {
+    this.get_callBack= function (res) {
+        $scope.users = res.data;
+        console.log("Res User ->", res.data)
+    }
+    this.getById_callBack = function (res) {
+        console.log("ultima funcion", res.data)
+    }
+    this.error = function (res) {
+        console.log("error")
+    }
+    this.get = function () {
+        AppServiceCaller.get(APP_URL + APP_USERS + "?" + APP_TOKEN, {}).then(this.get_callBack, this.error)
+    }
+    this.getById = function (id) {
+        AppServiceCaller.get(APP_URL + APP_USERS + "/" + id + "?" + APP_TOKEN, {}).then(this.getById_callBack, this.error)
+    }
+    
+};
+
+function Users($scope, AppServiceCaller) {
+    $scope.users = {};
+    $scope.user = {};
+
+    var u = new UserCallBacks($scope, AppServiceCaller);
+    u.get();
+    u.getById(5);
+}
+
+
+  
+
+ 

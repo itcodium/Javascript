@@ -11,7 +11,7 @@ angular.module('app.services', [])
         }
 
         this.get = function(url,parametros) {
-             return $http.get(url, { params: parametros }, {}).then(response, error);
+             return $http.get(url, { params: parametros }, {});
         };
         this.post= function (url, parametros) {
             return $http.post(url, parametros, config).then(response, error);
