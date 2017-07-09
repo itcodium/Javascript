@@ -1,13 +1,29 @@
-    <form name="frmUser" novalidate>
+<!-- 
+    [{
+        "creado_por": "dbo",
+        "usuario": "admin",    
+        "nombre": "Administrador",
+        "apellido": "Sistema",
+        "email": "p.haddad.p@gmail.com",
+        "password": "4297f44b13955235245b2497399d7a93",
+        "id_perfil": 1,
+        "modificado_por": null,
+        "vigencia_desde": "2016-01-01",
+        "vigencia_hasta": null,
+    
+    } ]
+-->
 
+    <h1>{{title}}</h1>
+    <form name="frmUser" novalidate>
         <div class="form-group">
-            <label for="first_name">{{pageUserText.first_name}}</label>
-            <input  class="form-control" name="first_name"   id="first_name"  required  ng-model="user.first_name">
-            <div ng-show="frmUser.$submitted || frmUser.first_name.$touched">
-              <span ng-show="frmUser.first_name.$error.required">{{pageUserText.first_name_required}}</span>
+            <label for="nombre">{{pageText.usuario}}</label>
+            <input  class="form-control" name="nombre"   id="nombre"  required  ng-model="user.nombre">
+            <div ng-show="frmUser.$submitted || frmUser.user.$touched">
+              <span ng-show="frmUser.user.$error.required">{{aplicationText.required}}</span>
             </div>
         </div>
-
+        <!-- 
         <div class="form-group">
             <label for="last_name">{{pageUserText.last_name}}</label>
             <input name="last_name" class="form-control" id="last_name" required   ng-model="user.last_name">
@@ -15,7 +31,6 @@
               <span ng-show="frmUser.last_name.$error.required">{{pageUserText.last_name_required}}</span>
             </div>
         </div>
-
         <div class="form-group">
             <label for="email">{{pageUserText.email}}</label>
             <input class="form-control" type="email" ng-model="user.email" name="email" required/>
@@ -24,17 +39,10 @@
               <span ng-show="frmUser.email.$error.email">This is not a valid email.</span>
             </div>
         </div>
-
         <div class="form-group">
             <label for="avatar">{{pageUserText.avatar}}</label>
             <input  class="form-control" id="avatar"   ng-model="user.avatar">
         </div>
-        <button type="submit" ng-click="submit()" class="btn btn-primary">{{AppControlText.submit}}</button>    
+            -->
+        <button type="submit" ng-click="submit()" class="btn btn-primary">{{AplicationText.submit}}</button>    
     </form>
-
-
-   <label>E-mail:
-      
-    </label>
-    <br />
-    

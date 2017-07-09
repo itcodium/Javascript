@@ -16,7 +16,8 @@
         <div class="page-inner">
             <div class="container">
                 <a href="#index" class="btn btn-default" ng-click='refreshLink("Home")'>Home</a> 
-                <a href="#user" class="btn btn-default" ng-click='refreshLink("Usuario")'>User</a> 
+                <a href="#user/list" class="btn btn-default" ng-click='refreshLink("Usuario")'>User List</a> 
+                <a href="#user/insert" class="btn btn-default" ng-click='refreshLink("Editar usuario")'>User insert</a> 
                 <a href="#user/edit" class="btn btn-default" ng-click='refreshLink("Editar usuario")'>User Edit</a> 
             </div>	
             <page-title value="titulo" ng-show='titulo'></page-title>
@@ -36,10 +37,10 @@
         <script src="assets/app.js"></script>
         <script src="assets/app.config.js"></script>
         <script src="assets/app.routes.js"></script>
-        <script src="assets/controllers/users.js"></script>
         <script src="assets/directives/directives.js"></script>
         <script src="assets/services/services.js"></script>
         <script src="assets/factory/factory.js"></script>
+        <script src="assets/controllers/users.js"></script>
   
     </body>
 </html>

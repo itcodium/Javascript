@@ -1,9 +1,9 @@
     <div ng-if="!edit">
         <form action="#" method="GET" data-default="150">
             <div class="input-group">
-                <input type="text" name="Buscar" class="form-control input-search" ng-model="search_user" placeholder="{{AppControlText.search}}">
+                <input type="text" name="Buscar" class="form-control input-search" ng-model="search_user" placeholder="{{AplicationText.search}}">
                 <span class="input-group-btn">
-                    <button class="btn btn-success" ng-click="search()" type="button"><i class="fa fa-search">{{AppControlText.search}}</i></button>
+                    <button class="btn btn-success" ng-click="search()" type="button"><i class="fa fa-search">{{AplicationText.search}}</i></button>
                 </span>
             </div><!-- Input Group -->
         </form><!-- Search Form -->
@@ -12,21 +12,21 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>{{pageUserText.first_name}}</th>
-                        <th>{{pageUserText.last_name}}</th>
-                        <th>{{pageUserText.avatar}}</th>
+                        <th>{{pageUserText.nombre}}</th>
+                        <th>{{pageUserText.apellido}}</th>
+                        <th>{{pageUserText.email}}</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody ng-repeat="user in users | filter:search_user">
                     <tr>
                         <th scope="row" >{{user.id}}</th>
-                        <td>{{user.first_name}}</td>
-                        <td>{{user.last_name}}</td>
-                        <td>{{user.avatar}}</td>
+                        <td>{{user.nombre}}</td>
+                        <td>{{user.apellido}}</td>
+                        <td>{{user.email}}</td>
                         <td>
-                            <a ng-click="showforedit($index)" class="btn btn-primary" >{{AppControlText.edit}}</a>
-                            <a ng-click="delete($index)" class="btn btn-danger" >{{AppControlText.delete}}</a>
+                            <a ng-click="showforedit($index)" class="btn btn-primary" >{{AplicationText.edit}}</a>
+                            <a ng-click="delete($index)" class="btn btn-danger" >{{AplicationText.delete}}</a>
                         </td>
                     </tr>
                 </tbody>

@@ -1,42 +1,60 @@
 ﻿
-var pageUserText = {
-    first_name: "First Name",
-    last_name: "Last Name",
-    avatar: "Avatar",
-    email: "Email",
-    first_name_required: "Tell us your name.",
-    last_name_required: "Tell us your last name."
-    
-};
-
-app.controller('userController', function ($scope, $http,$location, $httpParamSerializerJQLike, AppServiceCaller, AppControlText, MathService) {
-    console.log("MathService", MathService.multiply(2,8));
-
-    $scope.AppControlText = AppControlText;
-    $scope.pageUserText = pageUserText;
-
-    $scope.user = {};
-    $scope.user.first_name = "eve_new";
-    $scope.user.last_name = "holt_new";
-    $scope.user.avatar = "http://image.jpg";
-
-    $scope.submit = function () {
-        if ($scope.frmUser.$valid) {
-            $scope.visible = false;
-            AppServiceCaller.post(APP_USER, $httpParamSerializerJQLike($scope.usuario), true).then(function (resp) {
-                if (resp.status == 'OK' || resp.status == '201' || resp.status == '200') {
-                    $location.path('/user/edit');
-                } 
-                console.log("data -> ", resp)
-            });
+var UserModule = (function () {
+    var PageText = {
+        "usuario": "Usuario",
+        "nombre": "Nombre",
+        "apellido": "Apellido",
+        "email": "Email",
+        "password": "Password",
+        "perfil": "Perfil",
+        "vigencia_desde": "Vigencia desde",
+        "vigencia_hasta": "Vigencia hasta",
+    };
+    var api = new ApiCaller("usuarios");
+    this.UserList = function ($scope, AppServiceCaller, AplicationText) {
+        $scope.title = "Listado de usuarios"
+        UserBase.call(this, $scope, AppServiceCaller, AplicationText);
+        var userGet_callBack = function (res) {
+            $scope.users = res.data;
         }
-    }
-})
+        api.get(userGet_callBack);
+    };
+
+    function UserBase($scope, AppServiceCaller, AplicationText) {
+        $scope.pageText = PageText;
+        $scope.AplicationText = AplicationText;
+        api.setCaller(AppServiceCaller)
+    };
+    this.UserInsert=function($scope,AppServiceCaller, AplicationText) {
+        UserBase.call(this, $scope, AppServiceCaller, AplicationText);
+        $scope.title = "Alta de usuarios"
+        var getById_callBack = function (res) {
+            $scope.user = res.data[0];
+        }
+        api.getById(5, getById_callBack);
+    };
+    
+    this.UserEdit= function ($scope, AppServiceCaller, AplicationText) {
+        $scope.title = "Editar usuario"
+        UserBase.call(this, $scope, AppServiceCaller, AplicationText);
+        var getById_callBack = function (res) {
+            $scope.user = res.data;
+            console.log("User by id", res.data)
+        }
+        api.get(5, getById_callBack);
+    };
+    return {
+        UserInsertController: this.UserInsert,
+        UserEditController: this.UserEdit,
+        UserListController: this.UserList
+    };
+
+})();
 
 
-app.controller('edituserController', function ($scope, $filter, $http, AppServiceCaller, AppControlText, $httpParamSerializerJQLike) {
-    $scope.AppControlText = AppControlText;
-    $scope.pageUserText = pageUserText;
+app.controller('old', function ($scope, $filter, $http, $httpParamSerializerJQLike, AppServiceCaller, AplicationText) {
+    $scope.AppControlText = AplicationText;
+    $scope.pageUserText = PageText;
     $scope.user = {};
     $scope.user.avatar = "";
 
@@ -93,46 +111,14 @@ app.controller('edituserController', function ($scope, $filter, $http, AppServic
     $scope.revert = function (index) {
         $scope.users[index] = angular.copy($scope.user_aux)
     }
-
+ 
 });
 
+app.controller('UserEditController', ["$scope", "AppServiceCaller", "AplicationText", UserModule.UserListController])
+app.controller('controllerUserList', ["$scope", "AppServiceCaller", "AplicationText", UserModule.UserListController])
+app.controller('controllerUserInsert', ["$scope", "AppServiceCaller", "AplicationText", UserModule.UserInsertController])
 
+ 
 
-
-// app.controller('listUserController', ["$scope", "AppServiceCaller", Users])
-
-app.controller('listUserController', ["$scope", "AppServiceCaller", Users])
-
-var UserCallBacks = function ($scope, AppServiceCaller) {
-    this.get_callBack= function (res) {
-        $scope.users = res.data;
-        console.log("Res User ->", res.data)
-    }
-    this.getById_callBack = function (res) {
-        console.log("ultima funcion", res.data)
-    }
-    this.error = function (res) {
-        console.log("error")
-    }
-    this.get = function () {
-        AppServiceCaller.get(APP_URL + APP_USERS + "?" + APP_TOKEN, {}).then(this.get_callBack, this.error)
-    }
-    this.getById = function (id) {
-        AppServiceCaller.get(APP_URL + APP_USERS + "/" + id + "?" + APP_TOKEN, {}).then(this.getById_callBack, this.error)
-    }
-    
-};
-
-function Users($scope, AppServiceCaller) {
-    $scope.users = {};
-    $scope.user = {};
-
-    var u = new UserCallBacks($scope, AppServiceCaller);
-    u.get();
-    u.getById(5);
-}
-
-
-  
 
  

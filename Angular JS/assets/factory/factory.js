@@ -1,5 +1,5 @@
 
-app.factory('AppControlText', function () {
+app.factory('AplicationText', function () {
     return {
             submit: "Enviar",
             cancel: "Cancelar",
@@ -7,6 +7,7 @@ app.factory('AppControlText', function () {
             search: "Buscar...",
             acept: "Aceptar",
             edit: "Editar",
+            required:"El campo es requerido.",
             delete: "Borrar",
     };
 })
