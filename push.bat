@@ -1,3 +1,3 @@
 git add .
-git commit -m "Upload changes"
+git commit -m "Form validation"
 git push

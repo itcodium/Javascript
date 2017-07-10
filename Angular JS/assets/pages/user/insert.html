@@ -12,25 +12,39 @@
         "vigencia_hasta": null,
     
     } ]
+
+    <div>
+    <div ng-if="main.example.$error.required">Required Message</div>
+    <div ng-if="main.example.$error.minlength">Min length Error Message</div>
+    <div ng-if="main.example.$error.customValidator">Custom Error Message</div>
+    <div ng-if="main.example.$error.asyncValidator">Custom Async Error Message</div>
+    <div ng-if="main.example.$pending">Fetching Data...</div>
+</div>
+
 -->
 
+
     <h1>{{title}}</h1>
-    <form name="frmUser" novalidate>
+    <form name="form" ng-submit="submit()" novalidate>
+  
+
+
+
         <div class="form-group">
             <label for="nombre">{{pageText.usuario}}</label>
-            <input  class="form-control" name="nombre"   id="nombre"  required  ng-model="user.nombre">
-            <div ng-show="frmUser.$submitted || frmUser.user.$touched">
-              <span ng-show="frmUser.user.$error.required">{{aplicationText.required}}</span>
+            <input  class="form-control" name="nombre"   id="nombre"  required="required"  ng-model="user.nombre">
+            <div ng-show="form.$submitted || form.nombre.$touched">
+                <div class="label label-danger" ng-show="form.nombre.$error.required">{{AplicationText.required}}</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="apellido">{{pageText.apellido}}</label>
+            <input name="apellido" class="form-control" id="apellido" required   ng-model="user.apellido">
+            <div ng-show="form.$submitted || form.apellido.$touched">
+                <div class="label label-danger" ng-show="form.apellido.$error.required">{{AplicationText.required}}</div>
             </div>
         </div>
         <!-- 
-        <div class="form-group">
-            <label for="last_name">{{pageUserText.last_name}}</label>
-            <input name="last_name" class="form-control" id="last_name" required   ng-model="user.last_name">
-            <div ng-show="frmUser.$submitted || frmUser.last_name.$touched">
-              <span ng-show="frmUser.last_name.$error.required">{{pageUserText.last_name_required}}</span>
-            </div>
-        </div>
         <div class="form-group">
             <label for="email">{{pageUserText.email}}</label>
             <input class="form-control" type="email" ng-model="user.email" name="email" required/>
@@ -44,5 +58,5 @@
             <input  class="form-control" id="avatar"   ng-model="user.avatar">
         </div>
             -->
-        <button type="submit" ng-click="submit()" class="btn btn-primary">{{AplicationText.submit}}</button>    
+        <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">{{AplicationText.submit}}</button>    
     </form>

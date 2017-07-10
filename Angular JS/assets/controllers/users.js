@@ -1,4 +1,9 @@
-﻿
+﻿var formUser = [{
+    name: "nombre",
+    label: "Nombre",
+    required: true
+}]
+
 var UserModule = (function () {
     var PageText = {
         "usuario": "Usuario",
@@ -31,7 +36,23 @@ var UserModule = (function () {
         var getById_callBack = function (res) {
             $scope.user = res.data[0];
         }
+
         api.getById(5, getById_callBack);
+
+        $scope.submit = function (form) {
+            
+            if ($scope.form.$valid) {
+                console.log("insert!!")
+            }
+        }
+        $scope.reset = function (form) {
+            if (form) {
+                form.$setPristine();
+                form.$setUntouched();
+            }
+        };
+ 
+        
     };
     
     this.UserEdit= function ($scope, AppServiceCaller, AplicationText) {
