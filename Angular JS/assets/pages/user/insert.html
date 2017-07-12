@@ -6,17 +6,16 @@
         "apellido": "Sistema",
         "email": "p.haddad.p@gmail.com",
         "password": "4297f44b13955235245b2497399d7a93",
-        "id_perfil": 1,
-        "modificado_por": null,
         "vigencia_desde": "2016-01-01",
         "vigencia_hasta": null,
-    
+        "id_perfil": 1,
     } ]
 
     <div>
-    <div ng-if="main.example.$error.required">Required Message</div>
-    <div ng-if="main.example.$error.minlength">Min length Error Message</div>
+    
     <div ng-if="main.example.$error.customValidator">Custom Error Message</div>
+    <div ng-if="main.example.$error.minlength">Min length Error Message</div>
+    <div ng-if="main.example.$error.maxlength">Min length Error Message</div>
     <div ng-if="main.example.$error.asyncValidator">Custom Async Error Message</div>
     <div ng-if="main.example.$pending">Fetching Data...</div>
 </div>
@@ -26,37 +25,36 @@
 
     <h1>{{title}}</h1>
     <form name="form" ng-submit="submit()" novalidate>
-  
-
-
-
         <div class="form-group">
-            <label for="nombre">{{pageText.usuario}}</label>
+            <label for="usuario">{{pageText.usuario}}</label>
+            <input class="form-control" minlength="3" maxlength="20" name="usuario" id="usuario" required="required" ng-model="user.usuario">
+            <div ng-show="form.$submitted || form.usuario.$touched">
+                <span class="label label-danger" ng-show="form.usuario.$error.required">{{AplicationText.required}}</span>
+                <span class="label label-danger" ng-show="form.usuario.$error.minlength">{{pageText.usuario_minlength}}</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="nombre">{{pageText.nombre}}</label>
             <input  class="form-control" name="nombre"   id="nombre"  required="required"  ng-model="user.nombre">
             <div ng-show="form.$submitted || form.nombre.$touched">
-                <div class="label label-danger" ng-show="form.nombre.$error.required">{{AplicationText.required}}</div>
+                <span class="label label-danger" ng-show="form.nombre.$error.required">{{AplicationText.required}}</span>
             </div>
         </div>
         <div class="form-group">
             <label for="apellido">{{pageText.apellido}}</label>
             <input name="apellido" class="form-control" id="apellido" required   ng-model="user.apellido">
             <div ng-show="form.$submitted || form.apellido.$touched">
-                <div class="label label-danger" ng-show="form.apellido.$error.required">{{AplicationText.required}}</div>
+                <span class="label label-danger" ng-show="form.apellido.$error.required">{{AplicationText.required}}</span>
             </div>
         </div>
-        <!-- 
+        
         <div class="form-group">
-            <label for="email">{{pageUserText.email}}</label>
+            <label for="email">{{pageText.email}}</label>
             <input class="form-control" type="email" ng-model="user.email" name="email" required/>
-            <div ng-show="frmUser.$submitted || frmUser.email.$touched">
-              <span ng-show="frmUser.email.$error.required">Tell us your email.</span>
-              <span ng-show="frmUser.email.$error.email">This is not a valid email.</span>
+            <div ng-show="form.$submitted || form.email.$touched">
+              <span class="label label-danger" ng-show="form.email.$error.required">{{AplicationText.required}}</span>
+              <span class="label label-danger" ng-show="form.email.$error.email">{{AplicationText.novalid}}</span>
             </div>
         </div>
-        <div class="form-group">
-            <label for="avatar">{{pageUserText.avatar}}</label>
-            <input  class="form-control" id="avatar"   ng-model="user.avatar">
-        </div>
-            -->
-        <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">{{AplicationText.submit}}</button>    
+        <button type="submit" class="btn btn-primary">{{AplicationText.submit}}</button>    
     </form>

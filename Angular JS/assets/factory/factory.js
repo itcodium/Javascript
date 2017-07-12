@@ -7,7 +7,8 @@ app.factory('AplicationText', function () {
             search: "Buscar...",
             acept: "Aceptar",
             edit: "Editar",
-            required:"El campo es requerido.",
+            required: "El campo es requerido.",
+            novalid:"El valor ingresado no es valido.",
             delete: "Borrar",
     };
 })

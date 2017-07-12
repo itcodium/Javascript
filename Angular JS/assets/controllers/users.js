@@ -14,22 +14,25 @@ var UserModule = (function () {
         "perfil": "Perfil",
         "vigencia_desde": "Vigencia desde",
         "vigencia_hasta": "Vigencia hasta",
+        "usuario_minlength":"Ingresar al menos 3 caracteres"
     };
     var api = new ApiCaller("usuarios");
+    function UserBase($scope, AppServiceCaller, AplicationText) {
+        $scope.pageText = PageText;
+        $scope.AplicationText = AplicationText;
+        api.setCaller(AppServiceCaller)
+    };
+
     this.UserList = function ($scope, AppServiceCaller, AplicationText) {
-        $scope.title = "Listado de usuarios"
         UserBase.call(this, $scope, AppServiceCaller, AplicationText);
+        $scope.title = "Listado de usuarios"
         var userGet_callBack = function (res) {
             $scope.users = res.data;
         }
         api.get(userGet_callBack);
     };
 
-    function UserBase($scope, AppServiceCaller, AplicationText) {
-        $scope.pageText = PageText;
-        $scope.AplicationText = AplicationText;
-        api.setCaller(AppServiceCaller)
-    };
+    
     this.UserInsert=function($scope,AppServiceCaller, AplicationText) {
         UserBase.call(this, $scope, AppServiceCaller, AplicationText);
         $scope.title = "Alta de usuarios"
@@ -37,10 +40,7 @@ var UserModule = (function () {
             $scope.user = res.data[0];
         }
 
-        api.getById(5, getById_callBack);
-
         $scope.submit = function (form) {
-            
             if ($scope.form.$valid) {
                 console.log("insert!!")
             }
