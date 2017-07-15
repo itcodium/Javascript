@@ -1,3 +1,3 @@
 git add .
-git commit -m "Form validation email,minlength"
+git commit -m "Form Post ok"
 git push

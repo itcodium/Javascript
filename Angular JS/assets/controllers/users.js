@@ -1,8 +1,15 @@
-﻿var formUser = [{
-    name: "nombre",
-    label: "Nombre",
-    required: true
-}]
+﻿var usuario_testing={
+    "usuario": "test",    
+    "nombre": "test",
+    "apellido": "test",
+    "email": "test@test.com",
+    "password":"" ,
+    "vigencia_desde": "2016-01-01",
+    "vigencia_hasta": '',
+    "creado_por":"test",
+    "id_perfil": 1,
+    }
+
 
 var UserModule = (function () {
     var PageText = {
@@ -14,9 +21,11 @@ var UserModule = (function () {
         "perfil": "Perfil",
         "vigencia_desde": "Vigencia desde",
         "vigencia_hasta": "Vigencia hasta",
-        "usuario_minlength":"Ingresar al menos 3 caracteres"
+        "usuario_minlength": "Ingresar al menos 3 caracteres",
+        "password_verify":"Reescribir la contraseña"
     };
     var api = new ApiCaller("usuarios");
+    var validate= new FormValidations();
     function UserBase($scope, AppServiceCaller, AplicationText) {
         $scope.pageText = PageText;
         $scope.AplicationText = AplicationText;
@@ -36,25 +45,32 @@ var UserModule = (function () {
     this.UserInsert=function($scope,AppServiceCaller, AplicationText) {
         UserBase.call(this, $scope, AppServiceCaller, AplicationText);
         $scope.title = "Alta de usuarios"
-        var getById_callBack = function (res) {
-            $scope.user = res.data[0];
+        $scope.user = usuario_testing;
+
+        var userPost_callBack = function (res) {
+            if (!api.isError(res)) {
+                alert(res.data.message)
+            }
         }
 
         $scope.submit = function (form) {
             if ($scope.form.$valid) {
-                console.log("insert!!")
+                if (!validate.passwordEquals($scope.user.password, $scope.user.password_verify)) {
+                    alert("La contraseñas no coinciden.")
+                    return;
+                }
+                api.post($scope.user,userPost_callBack);
             }
         }
+
         $scope.reset = function (form) {
             if (form) {
                 form.$setPristine();
                 form.$setUntouched();
             }
         };
- 
-        
     };
-    
+
     this.UserEdit= function ($scope, AppServiceCaller, AplicationText) {
         $scope.title = "Editar usuario"
         UserBase.call(this, $scope, AppServiceCaller, AplicationText);
