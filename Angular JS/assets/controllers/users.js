@@ -1,4 +1,25 @@
-﻿var usuario_testing={
+﻿
+
+var ModalTemplate = function () {
+    this.target = ""
+    this.title = ""
+    this.text = ""
+    this.app_text = ""
+    this.model = {}
+    this.click = function () {
+        console.log("Click this.target", this.target);
+    },
+    this.show = function () {
+        console.log("Click this.target", this.target);
+        // $("#" + this.target).modal('show');
+    }
+    this.hide = function () {
+        // $("#" + this.target).modal('hide');
+    }
+}
+
+
+var usuario_testing = {
     "usuario": "test",    
     "nombre": "test",
     "apellido": "test",
@@ -39,6 +60,31 @@ var UserModule = (function () {
             $scope.users = res.data;
         }
         api.get(userGet_callBack);
+
+        $scope.modalEditUser = new ModalTemplate();
+        $scope.modalEditUser.title = "Edicion de usuario"
+        $scope.modalEditUser.target = "editUser";
+        $scope.modalEditUser.form = {
+            src: "assets/pages/user/edittest.html",
+            name: "frmEditUser"
+        };
+        $scope.modalEditUser.pageText = $scope.pageText;
+        $scope.modalEditUser.AplicationText = AplicationText;
+
+        $scope.modalEditUser.show = function (item) {
+            $scope.modalEditUser.user = item;
+            $("#" + this.target).modal('show');
+        }
+
+        $scope.modalEditUser.submit = function (form) {
+            console.log("Form", form)
+            if (form.$valid) {
+                console.log("Valid ", $scope.modalEditUser.user)
+            } else {
+                console.log("Not Valid", $scope.modalEditUser.user)
+            }
+        }
+
     };
 
     
@@ -46,13 +92,11 @@ var UserModule = (function () {
         UserBase.call(this, $scope, AppServiceCaller, AplicationText);
         $scope.title = "Alta de usuarios"
         $scope.user = usuario_testing;
-
         var userPost_callBack = function (res) {
             if (!api.isError(res)) {
                 alert(res.data.message)
             }
         }
-
         $scope.submit = function (form) {
             if ($scope.form.$valid) {
                 if (!validate.passwordEquals($scope.user.password, $scope.user.password_verify)) {
@@ -74,6 +118,8 @@ var UserModule = (function () {
     this.UserEdit= function ($scope, AppServiceCaller, AplicationText) {
         $scope.title = "Editar usuario"
         UserBase.call(this, $scope, AppServiceCaller, AplicationText);
+
+       
         var getById_callBack = function (res) {
             $scope.user = res.data;
             console.log("User by id", res.data)
@@ -89,73 +135,42 @@ var UserModule = (function () {
 })();
 
 
-app.controller('old', function ($scope, $filter, $http, $httpParamSerializerJQLike, AppServiceCaller, AplicationText) {
-    $scope.AppControlText = AplicationText;
-    $scope.pageUserText = PageText;
-    $scope.user = {};
-    $scope.user.avatar = "";
-
-    $scope.select_item = true;
-    $scope.edit = false;
-    $scope.search = function () {
-        $scope.select_item = true;
-        $scope.edit = false;
-        AppServiceCaller.get(APP_USER, {}).then(function (resp) {
-            $scope.users = resp.data.data;
-        });
-    };
-
-    $scope.search();
-
-    $scope.delete = function (index) {
-        AppServiceCaller.delete(APP_USER, $scope.users[index].id, true).then(function (resp) {
-            console.log(resp.status)
-            if (resp.status == 'OK' || resp.status == '204') {
-                $scope.users.splice(index, 1);
-            } else {
-                $scope.cancel();
-            }
-        });
-    };
-
-    $scope.showforedit = function (index) {
-        $scope.select_item = false;
-        $scope.edit = true;
-        $scope.select_index = index;
-        $scope.user_aux = angular.copy($scope.users[index]);
-        $scope.user = $scope.users[index];
-    };
-
-    $scope.update = function () {
-        AppServiceCaller.put(APP_USER, $scope.user.id, $httpParamSerializerJQLike($scope.user)).then(function (resp) {
-            if (resp.status != 'OK' && resp.status != '200') {
-                $scope.cancel_update();
-            }
-            
-            if (resp.status == '200' || resp.status == 'OK') {
-                $scope.select_item = true;
-                $scope.edit = false;
-                alert(resp.data.updatedAt)
-            }
-        });
-    };
-
-    $scope.cancel= function () {
-        $scope.select_item = true;
-        $scope.edit = false;
-        $scope.revert($scope.select_index)
-    };
-    $scope.revert = function (index) {
-        $scope.users[index] = angular.copy($scope.user_aux)
-    }
- 
-});
-
-app.controller('UserEditController', ["$scope", "AppServiceCaller", "AplicationText", UserModule.UserListController])
+app.controller('controllerUserEdit', ["$scope", "AppServiceCaller", "AplicationText", UserModule.UserEditController])
 app.controller('controllerUserList', ["$scope", "AppServiceCaller", "AplicationText", UserModule.UserListController])
 app.controller('controllerUserInsert', ["$scope", "AppServiceCaller", "AplicationText", UserModule.UserInsertController])
 
  
 
 
- 
+
+
+/*
+modalEditUser.show = function (item, pOperation) {
+    $scope.modalAddNode.model.operation = pOperation;
+    $scope.item_edit = item;
+    $("#" + this.target).modal('show');
+    $scope.modalAddNode.model.id_menu = item.id_menu;
+
+    if (pOperation == $scope.operation.UPDATE_NODE) {
+        $scope.modalAddNode.model.node = item.title;
+        $scope.modalAddNode.title = $scope.page_lang.modificar_nodo;
+    } else {
+        $scope.modalAddNode.title = $scope.page_lang.titulo_agregar;
+    }
+    $scope.modalAddNode.model.lang = APP_PAGE_LANGUAGE.getLanguage();
+}
+
+modalEditUser.submit = function () {
+    Service_Caller.set(APP_MENU, $httpParamSerializerJQLike($scope.modalAddNode.model), false).then(function (resp) {
+        if (resp.status == 'OK') {
+            $scope.modalEditUser.model = {};
+            $scope.modalEditUser.hide();
+        }
+    });
+}
+
+*/
+
+
+
+

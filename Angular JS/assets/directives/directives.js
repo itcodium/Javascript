@@ -10,9 +10,15 @@ app.directive("pageFooter", function () {
     return {
         templateUrl: 'assets/templates/PageFooter.html',
         replace: true,
-        scope: { value: '=' }
+        scope: { modal: '=' }
     };
 });
 
- 
+app.directive("modal", function () {
+    return {
+        templateUrl: 'assets/templates/Modal.html',
+        replace: true,
+        scope: { input: '=' }
+    };
+});
  

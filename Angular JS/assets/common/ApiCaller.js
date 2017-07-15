@@ -18,16 +18,17 @@ var ApiCaller = function (api) {
         }
         return result;
     }
+    
     this.get = function (callback) {
-        this.get(callback);
+       this.caller.get(APP_API.getUrl(api), {})
+            .then(callback, this.error)
     }
-    this.getById = function (id, callback) {
-        this.get(callback, id);
-    }
-    this.get = function (callback, id) {
+    this.getById = function (callback, id) {
         this.caller.get(APP_API.getUrl(api, id), {})
             .then(callback, this.error)
     }
+    
+    
     this.post = function (data, callback) {
         this.caller.post(APP_API.getUrl(api), data)
             .then(callback, this.error)

@@ -16,13 +16,9 @@ app.config(function ($routeProvider) {
             templateUrl: 'assets/pages/user/insert.html',
             controller: 'controllerUserInsert'
         })
-       .when('/user/list', {
-           templateUrl: 'assets/pages/user/list.html',
-           controller: 'controllerUserList'
-       })
-        .when('/user/edit', {
-            templateUrl: 'assets/pages/user/edit.html',
-            controller: 'UserEditController'
+        .when('/user/list', {
+            templateUrl: 'assets/pages/user/list.html',
+            controller: 'controllerUserList'
         })
         .otherwise({
             redirectTo: '/'
