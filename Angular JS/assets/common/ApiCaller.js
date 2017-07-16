@@ -1,7 +1,12 @@
-﻿
+﻿var API_METHOD = {
+    ADD: "ADD",
+    EDIT: "EDIT",
+    DELETE: "DELETE"
+}
+
+
 var ApiCaller = function (api) {
     this.setCaller = function (param) {
-        console.log("this.caller ", this.caller)
         if (typeof this.caller == 'undefined') {
             this.caller = param;
         }
@@ -13,7 +18,7 @@ var ApiCaller = function (api) {
     this.isError = function (res) {
         var result = false;
         if (res.data.status.toUpperCase() == "ERROR") {
-            alert("Ocurrio un error al procesar el formulario")
+            alert("Ocurrio un error al procesar el formulario: "+ res.data.message)
             result = true;
         }
         return result;
@@ -33,7 +38,7 @@ var ApiCaller = function (api) {
         this.caller.post(APP_API.getUrl(api), data)
             .then(callback, this.error)
     }
-    this.put = function (id, callback) {
+    this.put = function (id,data,callback) {
         this.caller.put(APP_API.getUrl(api, id), data)
             .then(callback, this.error)
     }

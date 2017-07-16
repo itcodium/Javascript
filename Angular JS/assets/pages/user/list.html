@@ -12,21 +12,21 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>{{pageUserText.nombre}}</th>
-                <th>{{pageUserText.apellido}}</th>
-                <th>{{pageUserText.email}}</th>
-                <th></th>
+                <th>{{pageText.nombre}}</th>
+                <th>{{pageText.apellido}}</th>
+                <th>{{pageText.email}}</th>
+                <th><a ng-click="modalEditUser.open('ADD')" class="btn btn-primary" >+</a></th>
             </tr>
         </thead>
-        <tbody ng-repeat="user in users | filter:search_user">
+        <tbody ng-repeat="user in modalEditUser.items| filter:search_user">
             <tr>
                 <th scope="row" >{{user.id}}</th>
                 <td>{{user.nombre}}</td>
                 <td>{{user.apellido}}</td>
                 <td>{{user.email}}</td>
                 <td>
-                    <a ng-click="modalEditUser.show(user)" class="btn btn-primary" >{{AplicationText.edit}}</a>
-                    <a ng-click="delete($index)" class="btn btn-danger" >{{AplicationText.delete}}</a>
+                    <a ng-click="modalEditUser.open('EDIT',$index)" class="btn btn-primary" >{{AplicationText.edit}}</a>
+                    <a ng-click="modalEditUser.open('DELETE',$index)" class="btn btn-danger" >{{AplicationText.delete}}</a>
                 </td>
             </tr>
         </tbody>
