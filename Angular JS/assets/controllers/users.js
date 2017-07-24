@@ -39,6 +39,7 @@ var UserModule = (function () {
         $scope.modalEditUser.setItems($scope.users);
         $scope.modalEditUser.title = "Edicion de usuario"
         $scope.modalEditUser.modal_name = "editUser";
+        $scope.modalEditUser.key_id = "id_usuario";
         $scope.modalEditUser.template = { src: "assets/pages/user/user.html" };
         $scope.modalEditUser.pageText = $scope.pageText;
         $scope.modalEditUser.AplicationText = AplicationText;
@@ -143,3 +144,8 @@ var UserModule = (function () {
 
 app.controller('controllerUserList', ["$scope", "AppServiceCaller", "AplicationText", "$filter", UserModule.UserListController])
 app.controller('controllerUserInsert', ["$scope", "AppServiceCaller", "AplicationText", UserModule.UserInsertController])
+
+
+ 
+
+

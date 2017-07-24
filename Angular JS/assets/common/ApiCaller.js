@@ -43,7 +43,7 @@ var ApiCaller = function (api) {
             .then(callback, this.error)
     }
     this.delete = function (id, callback) {
-        this.caller.delete(APP_API.getUrl(api, id), data)
+        this.caller.delete(APP_API.getUrl(api, id), {})
             .then(callback, this.error)
     }
 };

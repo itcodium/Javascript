@@ -13,7 +13,7 @@ var ModalTemplate = function () {
         $("#" + this.modal_name).modal('show');
     }
     this.hide = function (form) {
-        console.log("this.hide ")
+        JSArrays.deleteFromArray(this.items, this.key_id, this.model[this.key_id])
         this.resetModel();
         if (typeof this.form != 'undefined') { 
             this.form.$setPristine();
