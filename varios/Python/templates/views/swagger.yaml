@@ -1,0 +1,46 @@
+swagger: '2.0'
+info:
+  title: YourApp
+  description: 'your App'
+  version: 1.0.0
+host: 'localhost:5000'
+basePath: /service/
+consumes:
+  - application/json
+produces:
+  - application/json
+
+paths:
+  /${object}:
+% for value in methods:
+    ${value['method']["verbo"]}:
+      tags:
+        - ${object}s
+      summary:  ${object}s (${value['method']["value"]})
+      x-swagger-router-controller: ${object}s.${value['method']["value"]}
+      parameters:
+  % for  svalue in sorted(value['parameters'], key=value['parameters'].__getitem__,reverse=True):
+        ${svalue}: ${value['parameters'][svalue]} 
+  % endfor
+% if value['method']["verbo"]=="put": 
+          schema:
+            $ref: '#/definitions/user'
+% endif 
+      responses:
+        '200':
+          description: ${object}s list
+          schema:
+            $ref: '#/definitions/${object}'      
+% endfor
+definitions:
+   ${object}:
+    type: object
+    properties:        
+% for key, value in properties.items():
+      ${key}:
+          type:  ${value}
+% endfor
+
+
+ 
+  
