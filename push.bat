@@ -1,3 +1,3 @@
 git add .
-git commit -m "Modificacion: EJ: hoy es martes y quiero saber la fecha del ultimo jueves pasado"
+git commit -m "Se agrega fuincion para  convertir fecha yymmdd a numero "
 git push
