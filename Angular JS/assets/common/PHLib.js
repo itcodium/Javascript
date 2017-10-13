@@ -80,13 +80,49 @@ var PHLib = (function () {
 		}
 		return null;
 	}
+	function getCustomDay(format,separador){
+		separador=(typeof separador =='undefined') ? '' : separador;
+
+		var date = new Date();
+		var pad="00";
+		var padYear="0000";
+		
+			
+		var min	= date.getMinutes().toString();
+		var hour	= date.getHours().toString();
+			
+			
+		var day=date.getDate().toString();
+		var mes=(date.getMonth() +1).toString();
+		var year=date.getFullYear().toString();
+			day=pad.substring(0, pad.length - day.length)+day;
+			mes=pad.substring(0, pad.length - mes.length)+mes;
+			
+			hour=pad.substring(0, pad.length - hour.length)+hour;
+			min=pad.substring(0, pad.length - min.length)+min;
+			
+		if(format.toUpperCase()=="YYYYMMDDMMSS"){
+			year=year.substring(0, 4);
+			year=padYear.substring(0, padYear.length - year.length)+year;
+			return year+separador+ mes+separador+day+separador+hour+separador+min;
+		}
+		if(format.toUpperCase()=="YYMMDDMMSS"){
+			year=year.substring(2, 4);
+			year=pad.substring(0, pad.length - year.length)+year;
+			return year+separador+ mes+separador+day+separador+hour+separador+min;
+		}
+		
+		year=year.substring(2, 4);
+		return day+separador+mes+separador+year;
+    };
 	
 	
 	return {
         dayFromToday: dayFromToday,
 		formatNumber: formatNumber,
 		paddingRight:paddingRight,
-		convertDateToNumber: convertDateToNumber
+		convertDateToNumber: convertDateToNumber,
+		getCustomDay:getCustomDay
     };
 })();
 
@@ -104,10 +140,21 @@ var day=PHLib.formatNumber(test_number.toString(),",",".");
 console.log("day -> ",day)
 
 
+function convertDateToNumber(value,format){
+    if (format.toUpperCase()=="YYMMDD"){
+        return parseInt(value.substring(4,6)+value.substring(2,4)+ value.substring(0,2))
+    }
+    if (format.toUpperCase()=="YYMMDDHHMM"){
+        return parseInt(
+                value.substring(4,6)+value.substring(2,4)+ value.substring(0,2) + 
+				value.substring(6,8)+value.substring(8,10)
+        )
+    }
+
+    return null;
+}
+
 console.log( " fecha1 -> ",PHLib.convertDateToNumber("130717",'yymmdd'))
-console.log( " fecha2 -> ",PHLib.convertDateToNumber("121017",'yymmdd'))
-
-
+console.log( " fecha2 *** -> ", convertDateToNumber("1210171313",'yymmddhhmm'))
+console.log( " Dia -> ",PHLib.getCustomDay("yymmddhhmm",""))
  
-
-
