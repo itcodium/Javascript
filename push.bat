@@ -1,3 +1,3 @@
 git add .
-git commit -m "Se agrega fuincion para  convertir fecha yymmdd a numero "
+git commit -m "EmacScript6  Practicas"
 git push
