@@ -14,7 +14,6 @@ var ModalTemplate = function () {
     }
     this.hide = function (form) {   
         JSArrays.deleteFromArray(this.items, this.key_id, this.model[this.key_id])
-        this.resetModel();
         if (typeof this.form != 'undefined') { 
             this.form.$setPristine();
             this.form.$setUntouched();
@@ -31,7 +30,6 @@ var ModalTemplate = function () {
         this.resetModel();
     }
     this.open = function (method, index) {
-        console.log("API_METHOD,method, index", API_METHOD, method, index);
         if (method == API_METHOD.EDIT || method == API_METHOD.DELETE) {
             if (typeof index !== 'undefined') {
                 this.setItem(index)

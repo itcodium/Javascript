@@ -1,5 +1,5 @@
 var APP_API= {
-    APP_URL : "http://python-viupho.rhcloud.com/api/",
+    APP_URL: "http://bbb1-1000.193b.starter-ca-central-1.openshiftapps.com/api/",
     APP_TOKEN: "uuid=a223e322-3657-11e6-a49b-c04a00011902",
     USUARIOS: "usuario",
     PERFIL: "perfil",

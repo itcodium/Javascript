@@ -30,7 +30,7 @@ var UserModule = (function () {
         api.setCaller(AppServiceCaller)
     };
 
-    this.UserList = function ($scope, AppServiceCaller, AplicationText, $filter) {
+    this.UserList = function ($scope, $route,$filter, AppServiceCaller, AplicationText) {
         UserBase.call(this, $scope, AppServiceCaller, AplicationText);
         $scope.title = "Listado de usuarios"
         $scope.modalEditUser = new ModalTemplate();
@@ -46,7 +46,6 @@ var UserModule = (function () {
 
         $scope.modalEditUser.submit = function (form) {
             this.form = form;
-            console.log("$scope.modalEditUser.submit ", this)
             if (form.$valid) {
                 if (!validate.passwordEquals($scope.modalEditUser.model.password, $scope.modalEditUser.model.password_verify)) {
                     alert("La contraseñas no coinciden.")
@@ -54,34 +53,29 @@ var UserModule = (function () {
                 }
                 $scope.modalEditUser.model.vigencia_desde = $filter('date')($scope.modalEditUser.model.vigencia_desde, 'yyyy/MM/dd');
                 $scope.modalEditUser.model.vigencia_hasta = $filter('date')($scope.modalEditUser.model.vigencia_hasta, 'yyyy/MM/dd');
-                console.log("this.method", this.method)
                 if (this.method == "EDIT") {
                     api.put($scope.modalEditUser.model.id_usuario, $scope.modalEditUser.model, userPut_callBack);
                 }
-                console.log("this.method", this.method)
                 if (this.method == "DELETE") {
                     api.delete($scope.modalEditUser.model.id_usuario, userDelete_callBack);
                 }
-                console.log("this.method", this.method)
                 if (this.method == "ADD") {
-                    console.log("Add")
                     $scope.modalEditUser.model.id_perfil = 1
                     $scope.modalEditUser.model.creado_por="test"
                     api.post($scope.modalEditUser.model, userPost_callBack);
                 }
-                
             }
         }
         function userGet_callBack(res) {
             $scope.modalEditUser.items = res.data;
         }
-
         function userPut_callBack(res) {
             if (!api.isError(res)) {
                 if (res.data.status != 'OK') {
                     alert(res.data.message);
                 } else {
                     $scope.modalEditUser.hide();
+                    api.get(userGet_callBack);
                 }
             }
         }
@@ -92,22 +86,23 @@ var UserModule = (function () {
                 } else {
                     $scope.modalEditUser.items.push($scope.modalEditUser.model)
                     $scope.modalEditUser.hide();
+                     api.get(userGet_callBack);
                 }
             }
         }
-
         var userDelete_callBack = function (res) {
             if (!api.isError(res)) {
                 if (res.data.status != 'OK') {
                     alert(res.data.message);
                 } else {
                     $scope.modalEditUser.hide();
+                    api.get(userGet_callBack);
                 }
             }
         }
     };
 
-    this.UserInsert = function ($scope, AppServiceCaller, AplicationText) {
+    this.UserInsert = function ($scope,$route, AppServiceCaller, AplicationText) {
         UserBase.call(this, $scope, AppServiceCaller, AplicationText);
         $scope.title = "Alta de usuarios"
         $scope.user = usuario_testing;
@@ -142,8 +137,8 @@ var UserModule = (function () {
 })();
 
 
-app.controller('controllerUserList', ["$scope", "AppServiceCaller", "AplicationText", "$filter", UserModule.UserListController])
-app.controller('controllerUserInsert', ["$scope", "AppServiceCaller", "AplicationText", UserModule.UserInsertController])
+app.controller('controllerUserList', ["$scope", "$route", "$filter", "AppServiceCaller", "AplicationText", UserModule.UserListController])
+app.controller('controllerUserInsert', ["$scope", "$route", "AppServiceCaller", "AplicationText", UserModule.UserInsertController])
 
 
  
