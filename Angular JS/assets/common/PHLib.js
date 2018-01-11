@@ -1,7 +1,17 @@
 ﻿
 
 var PHLib = (function () {
-	
+	function splitString(text,separador,ordinalNumber){
+		var words=text.split(separador)
+		if(ordinalNumber.toUpperCase()=='FIRST'){
+			return words[0];
+		}
+		if(ordinalNumber.toUpperCase()=='LAST'){
+			return words[words.length-1];
+		}
+		return;
+	}
+
 	function restDays(startDate,numberOfDays)
 	{
 		var returnDate = new Date(
@@ -122,7 +132,8 @@ var PHLib = (function () {
 		formatNumber: formatNumber,
 		paddingRight:paddingRight,
 		convertDateToNumber: convertDateToNumber,
-		getCustomDay:getCustomDay
+		getCustomDay:getCustomDay,
+		splitString: splitString
     };
 })();
 
@@ -154,7 +165,14 @@ function convertDateToNumber(value,format){
     return null;
 }
 
+
+var test="lis.txt"
+console.log("*** > ", test.split(".")," len->",test.split(".").length);
+
 console.log( " fecha1 -> ",PHLib.convertDateToNumber("130717",'yymmdd'))
 console.log( " fecha2 *** -> ", convertDateToNumber("1210171313",'yymmddhhmm'))
 console.log( " Dia -> ",PHLib.getCustomDay("yymmddhhmm",""))
+
+console.log( " splitString  -> ",PHLib.splitString("Preembozado_Inter-CC29.xlsx.bak","*","last"))
+
  
